@@ -1,0 +1,366 @@
+/*
+ * bills_list - jQuery Plugin
+ * Simple and fancy lightbox alternative
+ *
+ * Examples and documentation at: http://bills_list.net
+ * 
+ * Copyright (c) 2008 - 2010 Janis Skarnelis
+ * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
+ * 
+ * Version: 1.3.4 (11/11/2010)
+ * Requires: jQuery v1.3+
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ */
+
+#bills_list-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 40px;
+	height: 40px;
+	margin-top: -20px;
+	margin-left: -20px;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 1104;
+	display: none;
+}
+
+#bills_list-loading div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 480px;
+	background-image: url('images/bills_list.png');
+}
+
+#bills_list-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1100;
+	display: none;
+}
+
+#bills_list-tmp {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	overflow: auto;
+	display: none;
+}
+
+#bills_list-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 34px 6px 6px;
+	z-index: 1101;
+	outline: none;
+	display: none;
+}
+
+#bills_list-outer {
+	position: relative;
+	width: 100%;
+	height: 100%;    
+}
+
+#bills_list-content {
+	width: 0;
+	height: 0;
+	padding: 0;
+    margin: 0;
+	outline: none;
+	position: relative;
+	overflow: hidden;
+	z-index: 1102;
+}
+
+#bills_list-hide-sel-frame {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	z-index: 1101;
+    
+}
+
+#bills_list-close {
+	position: absolute;
+	top: -31px;
+	right: -1px;
+	width: 18px;
+	height: 15px;
+	background: transparent url('images/pop_close.png') 0 0;
+	cursor: pointer;
+	z-index: 1103;
+	display: none;
+}
+#bills_list-close:active { background-position: 0 -15px;}
+
+#bills_list-error {
+	color: #444;
+	font: normal 12px/20px Arial;
+	padding: 14px;
+	margin: 0;
+}
+
+#bills_list-img {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	border: none;
+	outline: none;
+	line-height: 0;
+	vertical-align: top;
+}
+
+#bills_list-frame {
+	width: 100%;
+	height: 100%;
+	border: none;
+	display: block;
+}
+
+#bills_list-left, #bills_list-right {
+	position: absolute;
+	bottom: 0px;
+	height: 100%;
+	width: 35%;
+	cursor: pointer;
+	outline: none;
+	background: transparent url('images/blank.gif');
+	z-index: 1102;
+	display: none;
+}
+
+#bills_list-left {
+	left: 0px;
+}
+
+#bills_list-right {
+	right: 0px;
+}
+
+#bills_list-left-ico, #bills_list-right-ico {
+	position: absolute;
+	top: 50%;
+	left: -9999px;
+	width: 30px;
+	height: 30px;
+	margin-top: -15px;
+	cursor: pointer;
+	z-index: 1102;
+	display: block;
+}
+
+#bills_list-left-ico {
+	background-image: url('images/bills_list.png');
+	background-position: -40px -30px;
+}
+
+#bills_list-right-ico {
+	background-image: url('images/bills_list.png');
+	background-position: -40px -60px;
+}
+
+#bills_list-left:hover, #bills_list-right:hover {
+	visibility: visible; /* IE6 */
+}
+
+#bills_list-left:hover span {
+	left: 20px;
+}
+
+#bills_list-right:hover span {
+	left: auto;
+	right: 20px;
+}
+
+.bills_list-bg {
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	width: 6px;
+	height: 34px;
+	z-index: 1001;
+    background-color: #e5e5e5;
+}
+
+#bills_list-bg-n {
+	top: -34px;
+	left: 0;
+	width: 100%;
+	background-image: url('images/pop_n.png');
+}
+
+#bills_list-bg-ne {
+    top: -34px;
+	right: -6px;    
+	background-image: url('images/pop_ne.png');
+}
+
+#bills_list-bg-e {
+	top: 0;
+    right: -6px;
+	height: 100%;
+	background-image: url('images/pop_e.png');
+}
+
+#bills_list-bg-se {
+	height: 6px;
+    bottom: -6px;
+	right: -6px;
+	background-image: url('images/pop_se.png');
+}
+
+#bills_list-bg-s {
+	height: 6px;
+    bottom: -6px;
+	left: 0;
+	width: 100%;
+	background-image: url('images/pop_s.png');
+}
+
+#bills_list-bg-sw {
+	height: 6px;
+    bottom: -6px;
+	left: -6px;
+	background-image: url('images/pop_sw.png');
+}
+
+#bills_list-bg-w {
+	top: 0;
+    left: -6px;
+	height: 100%;
+	background-image: url('images/pop_w.png');
+}
+
+#bills_list-bg-nw {
+	top: -34px;
+    left: -6px;
+	background-image: url('images/pop_nw.png');
+}
+
+#bills_list-title {
+    font: bold 15px Arial, "Microsoft JhengHei", "微軟正黑體";
+	z-index: 1102;
+}
+
+/*.bills_list-title-inside {
+	padding-bottom: 10px;
+	text-align: center;
+	color: #333;
+	background: #fff;
+	position: relative;
+}*/
+
+.bills_list-title-outside {
+	color: #555;
+    position: absolute;
+    top: 8px;
+    left: 13px;
+}
+
+/*.bills_list-title-over {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #FFF;
+	text-align: left;
+}
+
+#bills_list-title-over {
+	padding: 10px;
+	background-image: url('images/fancy_title_over.png');
+	display: block;
+}
+
+.bills_list-title-float {
+	position: absolute;
+	left: 0;
+    top: -32px;
+	height: 32px;    
+}
+
+#bills_list-title-float-wrap {
+	border: none;
+	border-collapse: collapse;
+	width: auto;
+}
+
+#bills_list-title-float-wrap td {
+	border: none;
+	white-space: nowrap;
+    
+}
+#bills_list-title-float-main {
+	color: #FFF;
+	line-height: 29px;
+	font-weight: bold;
+	padding: 0 0 3px 0;
+	background: url('images/bills_list-x.png') 0px -40px;
+}
+#bills_list-title-float-left {
+	padding: 0 0 0 15px;
+	background: url('images/bills_list.png') -40px -90px no-repeat;
+}
+
+#bills_list-title-float-main {
+	color: #FFF;
+	line-height: 29px;
+	font-weight: bold;
+	padding: 0 0 3px 0;
+	background: url('images/bills_list-x.png') 0px -40px;
+}
+
+#bills_list-title-float-right {
+	padding: 0 0 0 15px;
+	background: url('images/bills_list.png') -55px -90px no-repeat;
+}*/
+
+/* IE6 */
+
+.bills_list-ie6 #bills_list-close { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bills_list/fancy_close.png', sizingMethod='scale'); }
+
+.bills_list-ie6 #bills_list-left-ico { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bills_list/fancy_nav_left.png', sizingMethod='scale'); }
+.bills_list-ie6 #bills_list-right-ico { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bills_list/fancy_nav_right.png', sizingMethod='scale'); }
+
+.bills_list-ie6 #bills_list-title-over { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bills_list/fancy_title_over.png', sizingMethod='scale'); zoom: 1; }
+.bills_list-ie6 #bills_list-title-float-left { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bills_list/fancy_title_left.png', sizingMethod='scale'); }
+.bills_list-ie6 #bills_list-title-float-main { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bills_list/fancy_title_main.png', sizingMethod='scale'); }
+.bills_list-ie6 #bills_list-title-float-right { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bills_list/fancy_title_right.png', sizingMethod='scale'); }
+
+.bills_list-ie6 #bills_list-bg-w, .bills_list-ie6 #bills_list-bg-e, .bills_list-ie6 #bills_list-left, .bills_list-ie6 #bills_list-right, #bills_list-hide-sel-frame {
+	height: expression(this.parentNode.clientHeight + "px");
+}
+
+#bills_list-loading.bills_list-ie6 {
+	position: absolute; margin-top: 0;
+	top: expression( (-20 + (document.documentElement.clientHeight ? document.documentElement.clientHeight/2 : document.body.clientHeight/2 ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop )) + 'px');
+}
+
+#bills_list-loading.bills_list-ie6 div	{ background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bills_list/fancy_loading.png', sizingMethod='scale'); }
+
+/* IE6, IE7, IE8 */
+
+.bills_list-ie .bills_list-bg { background: transparent !important; }
+
+.bills_list-ie #bills_list-bg-n { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='js/bills_list/images/pop_n.png', sizingMethod='scale'); }
+.bills_list-ie #bills_list-bg-ne { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='js/bills_list/images/pop_ne.png', sizingMethod='scale'); }
+.bills_list-ie #bills_list-bg-e { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='js/bills_list/images/pop_e.png', sizingMethod='scale'); }
+.bills_list-ie #bills_list-bg-se { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='js/bills_list/images/pop_se.png', sizingMethod='scale'); }
+.bills_list-ie #bills_list-bg-s { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='js/bills_list/images/pop_s.png', sizingMethod='scale'); }
+.bills_list-ie #bills_list-bg-sw { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='js/bills_list/images/pop_sw.png', sizingMethod='scale'); }
+.bills_list-ie #bills_list-bg-w { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='js/bills_list/images/pop_w.png', sizingMethod='scale'); }
+.bills_list-ie #bills_list-bg-nw { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='js/bills_list/images/pop_nw.png', sizingMethod='scale'); }

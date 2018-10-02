@@ -1,0 +1,26 @@
+<div id="analysis-form">
+	<div class="row"><!--
+	 --><div class="inlinebox itemname">商機狀態</div><!----><div class="inlinebox"><select class="selectedStatus" onChange="changeList();"><option value="0">報價</option><option value="1">開案</option><option value="2">出貨</option><option value="3">流標</option></select></div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">類別</div><!----><div class="inlinebox"><select class="classPoC" onChange="changeList();"><option value="0">產品</option><option value="1">客戶</option></select></div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">名稱</div><!----><div class="inlinebox"><select class="list"></select></div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">期間</div><!----><div class="inlinebox">從&nbsp;<input type="text" class="start-date" style="width: 75px;" readonly>&nbsp;到&nbsp;<input type="text" class="end-date" style="width: 75px;" readonly></div><!--
+ --></div>
+ 	<div class="row notification">
+ 		*欲精準分析 ，請務必在業務商機裡 ，填寫標有*號的欄位。
+ 	</div>
+ 	<div class="warningbox" style="position: absolute; top: 10px; right: -95px; margin: 0px; width: 150px; display: none;">
+		<div style="text-align: right;">
+			<a href="javascript:;" onClick="$(this).parent().parent().stop().toggle(300);" class="closex"></a>
+ 		</div>
+ 		<div class="warning-content" style="padding: 23px 24px;">
+ 			<div style="text-align: left; margin-bottom: 2px;">資料未填寫完整</div>
+ 			<div style="text-align: left;">請重新填寫</div>
+ 		</div>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<div class="sub_job">
+	<input class='center sub_job_input' type='text' name='sub_job_titles[]' placeholder='+ 分解工作......' /><!--
+ --><a href="javascript:;" class="picbutton cal_btn">時程</a><!--
+ --><div class="pick-during">
+		<div style="text-align: right;">
+			<a href="javascript:;" onClick="$(this).parent().parent().stop().toggle(300);" class="closex"></a>
+		</div>
+		<div class="during-box">
+			<div>開始日期&nbsp;&nbsp;<input type="text" name="sub_job_sdates[]" class="date-pick start-date" style="" title="開始日期" readonly /></div>
+			<div>結束日期&nbsp;&nbsp;<input type="text" name="sub_job_edates[]" class="date-pick end-date" style="" title="結束日期" readonly /></div>
+			<div style="width: auto; text-align: right; padding: 5px 2px;">
+				<div class="during-submit" style="">
+                	<a class="" href="javascript:;" onClick="checkDateIsEmpty( $(this) );">確定</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>

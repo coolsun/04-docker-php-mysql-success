@@ -1,0 +1,96 @@
+@charset "utf-8";
+body { 
+    font-family: Arial, "Microsoft JhengHei", "微軟正黑體", Helvetica, Verdana, sans-serif;
+    font-size: 63%;
+    color: #555;
+    background-color: #fff;
+}
+a { color: #555; text-decoration: none; }
+a:hover { color: #555; }
+
+/* ==============================================
+　　HEADER SET 
+============================================== */
+.topbar {
+    width: 100%;
+    background: #292929 url(../images/bg_topbar.png) repeat-x;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+}
+#header { width: 1000px; margin: 0 auto; }
+#header, #global-nav,
+#global-nav li, #global-nav li a,
+#global-member,
+#global-member li, #global-member li a { height: 31px; }
+
+#global-nav { float: left; }
+#global-nav li {
+    width: 57px;
+    text-indent: -9999px;
+    list-style-type: none;
+    float: left;
+}
+#global-nav li,
+#global-nav li a { background: url(../images/nav.gif); display: block; }
+
+#global-nav li.logo,
+#global-nav li.logo a { width: 103px; background-position: 0 0; }
+#global-nav li.job,
+#global-nav li.job a { background-position: -103px 0; }
+#global-nav li.finance,
+#global-nav li.finance a { background-position: -160px 0; }
+#global-nav li.health,
+#global-nav li.health a { background-position: -217px 0; }
+#global-nav li.friend,
+#global-nav li.friend a { background-position: -274px 0; }
+
+#global-nav li.logo a:hover { background-position: 0 -31px; }
+#global-nav li.job a:hover { background-position: -103px -31px; }
+#global-nav li.finance a:hover { background-position: -160px -31px; }
+#global-nav li.health a:hover { background-position: -217px -31px; }
+#global-nav li.friend a:hover { background-position: -274px -31px; }
+
+#global-nav li.logo a.current,
+#global-nav li.logo a:active { background-position: 0 -62px; }
+#global-nav li.job a.current,
+#global-nav li.job a:active { background-position: -103px -62px; }
+#global-nav li.finance a.current,
+#global-nav li.finance a:active { background-position: -160px -62px; }
+#global-nav li.health a.current,
+#global-nav li.health a:active { background-position: -217px -62px; }
+#global-nav li.friend a.current,
+#global-nav li.friend a:active { background-position: -274px -62px; }
+
+#global-member { float: right; }
+#global-member li { list-style-type: none; float: left; position: relative; }
+#global-member li ,
+#global-member li a {
+    color: #fff;
+    line-height: 31px;
+    text-align: center;
+    background: url(../images/nav.gif) 100% 0;
+    display: block;
+}
+#global-member li.email,
+#global-member li.email a { width: 59px; cursor: pointer; }
+#global-member li.email img { margin: 8px 0 0; }
+#global-member li.email span,
+#global-member li.email a span {
+    font-size: 12px;
+    line-height: 12px;
+    background-color: #ff0000;
+    padding: 1px 1px 0;
+    position: absolute;
+    right: 7px;
+    bottom: 2px;
+}
+#global-member li.profile,
+#global-member li.profile a { width: 57px; }
+#global-member li.profile img { margin: 2px 0 0 -2px; }
+
+#global-member li.function,
+#global-member li.function a { width: 25px; }
+#global-member li.function img { margin: 0 0 0 -2px; }

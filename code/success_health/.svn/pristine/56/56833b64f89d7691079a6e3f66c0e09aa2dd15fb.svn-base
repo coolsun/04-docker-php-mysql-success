@@ -1,0 +1,2 @@
+1. database tables的外鍵都沒設定，有需要的話再自行設定
+2. schema 沒有users table，主要是靠$_SESSION['userid']來決定各表的user_id

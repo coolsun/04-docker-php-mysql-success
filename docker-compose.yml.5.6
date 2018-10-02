@@ -1,0 +1,53 @@
+#https://gist.github.com/michaelneu/2ca7987ef00fa3fbe4fd7b9c07834cc7
+version: '3'
+services:
+  web8400:
+    image: nginx:1.14.0
+    ports:
+      - "8400:80"
+    #  - "443:443"
+    container_name: web8400 
+    volumes:
+      - ./code:/code
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl/certs:/etc/nginx/ssl/certs
+    links:
+      - php9400
+  php9400:
+    build: .
+    volumes: 
+      - ./code:/code
+    image: php9400:5.6-fpm
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+    links:
+      - mysql5.6-3346
+      - maildev8490
+  mysql5.6-3346:
+    image: mysql:5.6
+    volumes:
+      - mysql5.6-3346:/var/lib/mysql
+    container_name: mysql5.6-3346 
+    ports:
+      - "3346:3306"
+    environment: 
+      - MYSQL_ROOT_PASSWORD=password
+  phpmyadmin8480:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql5.6-3346:db
+    ports:
+      - "8480:80"
+    container_name: phpmyadmin8480 
+    environment:
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+      - PHP_UPLOAD_MAX_FILESIZE=100MB
+  maildev8490:
+    image: djfarrelly/maildev
+    container_name: maildev8490 
+    ports:
+     - "8490:80"
+volumes:
+  mysql5.6-3346:
+
