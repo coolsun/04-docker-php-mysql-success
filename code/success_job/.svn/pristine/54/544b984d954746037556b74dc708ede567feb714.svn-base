@@ -1,0 +1,132 @@
+<div class="session newSession">
+	<div class="cancelNewSession">x</div>
+	<div class="sessionTitle"><input class="session_input session_title_input" type="text" placeholder="會議名稱 ..." /></div>
+	<div class="sessionTime">
+		<input id="timepicker" class="session_input session_time_input" type="text"  placeholder="開始時間 ..." readonly />
+		<span class="timein24" style="display: none;"></span>
+	</div>
+</div>
+<script type="text/javascript">
+$('.newSession .session_title_input').on('keyup', function(e) {
+	var $this = $(this);
+	var code = e.which;
+	if(code == 13) { //Enter keycode
+		//alert('enter');
+		if( $.trim( $(this).val() ) == '' ) {
+			return false;
+		}
+		var date = $(this).parents('.sessions').find('.sessionDate').text();
+		var title = $(this).val();
+		$.ajax({
+			type:"POST",
+			data: { type: 0, data: { 'date': date, 'title': title }  },
+			url:"job/plan/plan_functions/map/session_saving.php",
+			dateType:"json",
+			error:function(){
+				alert("Failed.");
+			},
+			success:function( data ){
+				if( data.status.match(/^success/) ) {
+					$this.unbind('keyup');
+					$this.parents('.session').find('.session_time_input').unbind('click');
+					$this.parents('.session').find('.cancelNewSession').unbind('click').removeClass('cancelNewSession').addClass('deleteSession');
+					$this.parents('.session').prepend('<div class="sessionid" style="display: none;">'+data.id+'</div>');
+					$this.parents('.session').removeClass('newSession').addClass('hasSession');
+					if( !$this.parents('.sessions').find('.add').length ) {
+						//$this.parents('.sessions').append('<div class="session add"><div class="addSession">+</div></div>');
+						paddingSessions();
+					}
+				}
+			}
+
+		});
+	}
+	return false;
+});
+
+$('.newSession .session_time_input').on('click', function() {
+	var $this = $(this);
+	var title = $(this).parents('.session').find('.session_title_input').val(); 
+	var date = $(this).parents('.sessions').find('.sessionDate').text();
+	var inputPosition = $(this).offset();
+	//alert(title);
+
+	$('#confirmBox').remove();
+
+	var timeForm = ['<div id="timebox">',
+						'<select class="ampm">','<option value="AM">','上午</option>','<option value="PM">','下午</option>','</select><span style="width: 24px;">&nbsp;</span>',
+						'<select class="hour">',
+							'<option>','01</option>','<option>','02</option>','<option>','03</option>','<option>','04</option>',
+							'<option>','05</option>','<option>','06</option>','<option>','07</option>','<option>','08</option>',
+							'<option>','09</option>','<option>','10</option>','<option>','11</option>','<option>','12</option>',
+						'</select><span>時</span>',
+						'<select class="min">', 
+							'<option>','00</option>','<option>','05</option>','<option>','10</option>','<option>','15</option>',
+							'<option>','20</option>','<option>','25</option>','<option>','30</option>','<option>','35</option>',
+							'<option>','40</option>','<option>','45</option>','<option>','50</option>','<option>','55</option>',
+						'</select><span>分</span>',
+					'</div>'].join('');
+	//alert($(this)[0].offsetWidth);
+	console.log(inputPosition.top+":"+inputPosition.left);
+	console.log( Math.floor(inputPosition.left) + 340 );
+	console.log( $('#main-content').offset().left + $('#main-content')[0].offsetWidth );
+	var voffset_padding = 70;
+	var hoffset_padding = 90;
+
+	if( Math.floor(inputPosition.left) + 340  > $('#main-content').offset().left + $('#main-content')[0].offsetWidth ) {
+		hoffset_padding =  (Math.floor(inputPosition.left) + 263) - ($('#main-content').offset().left + $('#main-content')[0].offsetWidth) ;
+		hoffset_padding *= -1;
+	}
+	
+	$.confirm({
+        'title'     : '<b class="inlinebox" style="position: relative; top: 4px; left:10px; font-size: 12px; height: 18px;">時間</b>',
+        'content'   : timeForm,
+        'unmask'    : true,
+        'width'     : '340',
+        'position'  : 'absolute',
+        'offset'    : Math.floor(inputPosition.left)+hoffset_padding,
+        'voffset'   : Math.floor(inputPosition.top)-voffset_padding,
+        'buttonDivCss': 'text-align: right; padding-right: 5px; margin-top: 10px;',
+        'loadAction' : function() {},
+        'buttons'   : {
+            '確定'   : {
+                'class' : 'gray',
+                'action': function(){
+                	
+                	var time = $('#timebox').find('.hour').val() +':'+$('#timebox').find('.min').val() +':00 '+ $('#timebox').find('.ampm').val();
+                	$.ajax({
+						type:"POST",
+						data: { type: 1, data: { 'date': date, 'title': title, 'time': time }  },
+						url:"job/plan/plan_functions/map/session_saving.php",
+						dateType:"json",
+						error:function(){
+							alert("Failed.");
+						},
+						success:function( data ){
+							if( data.status.match(/^success/) ) {
+								$this.unbind('click');
+								$this.parents('.session').find('.session_title_input').unbind('keyup');
+								$this.parents('.session').find('.cancelNewSession').unbind('click').removeClass('cancelNewSession').addClass('deleteSession');
+								$this.parents('.session').prepend('<div class="sessionid" style="display: none;">'+data.id+'</div>');
+								$this.val(data.time);
+								$this.parents('.session').removeClass('newSession').addClass('hasSession');
+							}
+						}
+
+					});
+
+					return true;
+                }
+            }
+        }
+    });
+	
+});
+$('.newSession .cancelNewSession').on('click', function() {
+	var sessions_container = $(this).parents('.sessions');
+	$('.session.newSession').parent().append('<div class="session add"><div class="addSession">+</div></div>');
+	$('.session.newSession').parent().append('<div class="session add"><div class="addSession">+</div></div>');
+	$('.newSession').remove();
+	$('#confirmBox').remove();
+});
+</script>

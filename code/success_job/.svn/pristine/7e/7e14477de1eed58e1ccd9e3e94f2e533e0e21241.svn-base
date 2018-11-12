@@ -1,0 +1,29 @@
+<div id="search-form" style="position: relative;">
+	<div class="row"><!--
+	 --><div class="inlinebox itemname">商機序號</div><!----><div class="inlinebox"><input class="search-businessNo" type="text" /></div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">期間</div><!----><div class="inlinebox">從&nbsp;<input type="text" class="start-date" style="width: 75px;" readonly>&nbsp;到&nbsp;<input type="text" class="end-date" style="width: 75px;" readonly></div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">狀態</div><!----><div class="inlinebox"><select class="search-status"><option value="0">報價</option><option value="1">開案</option><option value="2">出貨</option><option value="3">流標</option></select></div><!--
+ --></div>
+ 	<div class="row" style="margin: 10px auto;"><!--
+	 --><div class="inlinebox itemname"><div class="inlinebox" style="border-bottom: 2px solid #aaa; height: 24px; line-height: 24px;">客戶需求</div></div><!----><div class="inlinebox">&nbsp;</div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">客戶名稱</div><!----><div class="inlinebox"><input class="search-clientName" type="text" /></div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">產品規格</div><!----><div class="inlinebox"><input class="search-requireProductStandard" type="text" /></div><!--
+ --></div>
+ 	<div class="row" style="margin: 10px auto;"><!--
+	 --><div class="inlinebox itemname"><div class="inlinebox" style="border-bottom: 2px solid #aaa; height: 24px; line-height: 24px;">我的提案</div></div><!----><div class="inlinebox">&nbsp;</div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">產品規格</div><!----><div class="inlinebox"><input class="search-proposalProductStandard" type="text" /></div><!--
+ --></div>
+ 	<div class="row"><!--
+	 --><div class="inlinebox itemname">型號</div><!----><div class="inlinebox"><input class="search-typeNumber" type="text" /></div><!--
+ --></div>
+</div>

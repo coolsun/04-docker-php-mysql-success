@@ -1,0 +1,21 @@
+ <form id="search-form" method="post" action="index.php?dept=job&ma=jobnote&sa=list">
+ 	<div class="row">
+ 		<div class="itemname inlinebox">撰寫日期</div><!--
+ 	 --><div style="display:inline-block;">
+ 			<input class="pick-Date" name="selectedDate" type="text" style="text-align:center;" readonly/>
+ 		</div>
+ 	</div>
+ 	<div class="row">
+ 		<div class="inlinebox itemname">期間</div><!--
+ 	 --><div class="inlinebox">從&nbsp;<input type="text" class="start-date" name="sdate" style="width: 75px;" readonly>&nbsp;到&nbsp;<input type="text" class="end-date" name="edate" style="width: 75px;" readonly></div>
+ 	</div>
+ 	<div class="warningbox" style="position: absolute; top: 5px; right: -145px; margin: 0px; width: 150px; display: none;">
+		<div style="text-align: right;">
+			<a href="javascript:;" onClick="$(this).parent().parent().stop().toggle(300);" class="closex"></a>
+ 		</div>
+ 		<div class="warning-content" style="padding: 23px 24px;">
+ 			<div style="text-align: left; margin-bottom: 2px;">資料未填寫完整</div>
+ 			<div style="text-align: left;">請填寫資料</div>
+ 		</div>
+	</div>
+ </form>

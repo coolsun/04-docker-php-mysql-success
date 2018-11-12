@@ -1,0 +1,16 @@
+<div class="addopportunitybox" style="position: relative;">
+	<div style="text-align: left; padding-left: 48px;">請勾選</div>
+	<div style="text-align: left; padding-left: 48px;"><input type="radio" name="status_choice" value="0" />&nbsp;報價</div>
+	<div style="text-align: left; padding-left: 48px;"><input type="radio" name="status_choice" value="1" />&nbsp;開案</div>
+	<div style="text-align: left; padding-left: 48px;"><input type="radio" name="status_choice" value="2" />&nbsp;出貨</div>
+	<div style="text-align: left; padding-left: 48px;"><input type="radio" name="status_choice" value="3" />&nbsp;流標</div>
+	<div class="warningbox" style="position: absolute; top: 0; right: -95px; margin: 0px; width: 145px; display: none;">
+		<div style="text-align: right;">
+			<a href="javascript:;" onClick="$(this).parent().parent().stop().toggle(300);" class="closex"></a>
+ 		</div>
+ 		<div class="warning-content" style="padding: 23px 24px;">
+ 			<div style="text-align: left; margin-bottom: 2px;">資料未填寫完整</div>
+ 			<div style="text-align: left;">請重新填寫</div>
+ 		</div>
+	</div>
+</div>

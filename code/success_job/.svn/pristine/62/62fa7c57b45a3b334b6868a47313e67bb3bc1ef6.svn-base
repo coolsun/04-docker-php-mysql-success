@@ -1,0 +1,14 @@
+<div class="addopportunitybox" style="position: relative;">
+	<div>客戶名稱&nbsp;&nbsp;<input type="text" id="client_name" /></div>
+	<div>產品規格&nbsp;&nbsp;<input type="text" id="product_standard" /></div>
+	<div>需求數量&nbsp;&nbsp;<input type="text" id="require_amount" /></div>
+	<div class="warningbox" style="position: absolute; top: 0; right: -95px; margin: 0px; width: 145px; display: none;">
+		<div style="text-align: right;">
+			<a href="javascript:;" onClick="$(this).parent().parent().stop().toggle(300);" class="closex"></a>
+ 		</div>
+ 		<div class="warning-content" style="padding: 23px 24px;">
+ 			<div style="text-align: left; margin-bottom: 2px;">資料未填寫完整</div>
+ 			<div style="text-align: left;">請重新填寫</div>
+ 		</div>
+	</div>
+</div>
